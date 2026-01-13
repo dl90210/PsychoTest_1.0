@@ -3,51 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Red Flag Radar</title>
+    <title>Is He A Choice? 🚩</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #121212; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        #quiz-container { background: #1e1e1e; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.7); width: 90%; max-width: 400px; text-align: center; border: 1px solid #333; }
-        #counter-container { font-weight: bold; font-size: 1.1rem; margin-bottom: 10px; transition: 0.3s; }
-        .safe { color: #4CAF50; } .warning { color: #FFC107; } .danger { color: #ff4b2b; text-shadow: 0 0 8px #ff4b2b; }
-        #progress-bar { width: 100%; height: 6px; background: #333; border-radius: 3px; margin-bottom: 20px; overflow: hidden; }
-        #progress-fill { height: 100%; width: 0%; background: #ff4b2b; transition: 0.3s; }
-        .option-btn { display: block; width: 100%; margin: 10px 0; padding: 15px; background: #2a2a2a; color: white; border: 1px solid #444; border-radius: 10px; cursor: pointer; font-size: 1rem; transition: 0.2s; }
-        .option-btn:hover { background: #333; border-color: #ff4b2b; }
+        body { font-family: 'Segoe UI', sans-serif; background: #1a0f1f; color: #fff; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
+        #quiz-container { background: #2d1b36; padding: 2rem; border-radius: 25px; box-shadow: 0 15px 50px rgba(0,0,0,0.8); width: 100%; max-width: 450px; text-align: center; border: 3px solid #ff0077; }
+        #counter-container { font-size: 1.4rem; margin-bottom: 10px; font-weight: 800; color: #ff0077; }
+        #progress-bar { width: 100%; height: 10px; background: #442a50; border-radius: 5px; margin-bottom: 25px; }
+        #progress-fill { height: 100%; width: 0%; background: linear-gradient(to right, #ff0077, #ff5e00); transition: 0.4s; }
+        h2 { font-size: 1.6rem; line-height: 1.4; margin-bottom: 20px; color: #f8f8f8; }
+        .option-btn { display: block; width: 100%; margin: 12px 0; padding: 18px; background: #3d2649; color: white; border: 2px solid #5d3a6f; border-radius: 15px; cursor: pointer; font-size: 1.1rem; font-weight: 600; transition: 0.2s; }
+        .option-btn:hover { background: #ff0077; border-color: #fff; transform: scale(1.02); }
+        #reaction-overlay { display: none; font-size: 1.5rem; font-weight: bold; color: #ffeb3b; margin: 15px 0; padding: 10px; border-radius: 10px; background: rgba(0,0,0,0.3); animation: bounce 0.5s; }
         #result { display: none; }
-        h2 { font-size: 1.4rem; margin-bottom: 20px; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     </style>
 </head>
 <body>
 
 <div id="quiz-container">
-    <div id="counter-container" class="safe">🚩 Flags Detected: <span id="flag-count">0</span></div>
+    <div id="counter-container">🚩 Red Flag Count: <span id="flag-count">0</span></div>
     <div id="progress-bar"><div id="progress-fill"></div></div>
 
     <div id="quiz-ui">
-        <h2 id="question">Loading...</h2>
+        <h2 id="question">Loading the tea... ☕</h2>
+        <div id="reaction-overlay"></div>
         <div id="options-bin"></div>
     </div>
     
     <div id="result">
-        <h2 id="verdict-title">The Verdict</h2>
-        <p id="verdict-text"></p>
-        <button class="option-btn" onclick="location.reload()">Restart Quiz</button>
-        <button class="option-btn" onclick="shareResults()" style="background: #ff4b2b; border: none; font-weight: bold;">Share Results</button>
+        <h2 id="verdict-title">The Real Tea ☕</h2>
+        <p id="verdict-text" style="font-size: 1.2rem; line-height: 1.6;"></p>
+        <button class="option-btn" onclick="location.reload()">Reset The Drama 💅</button>
+        <button class="option-btn" onclick="shareResults()" style="background: #ff0077; border: none; box-shadow: 0 4px 15px rgba(255, 0, 119, 0.4);">Send To The Group Chat 📲</button>
     </div>
 </div>
 
 <script>
     const questions = [
-        { q: "Does he try to make you feel guilty for spending time with friends?", points: 1 },
-        { q: "Does he frequently ask for your phone passwords?", points: 1 },
-        { q: "Does he blame you for his own mistakes or bad moods?", points: 1 },
-        { q: "Does he get angry if you don't text back within 5 minutes?", points: 1 },
-        { q: "Has he ever 'accidentally' shown up where you are uninvited?", points: 1 },
-        { q: "Does he claim that all of his ex-girlfriends are 'crazy'?", points: 1 },
-        { q: "Does he think 'The Joker' is a misunderstood hero?", points: 1 },
-        { q: "Does he own more than three different crypto-currency t-shirts?", points: 1 },
-        { q: "Does he refuse to eat anything that isn't a 'dino nugget'?", points: 0 },
-        { q: "Does he keep a collection of your hair 'for memories'?", points: 1 }
+        { q: "Is he still 'best friends' with his ex who 'hates' him? 🐍", points: 1, reply: "Baby, that's not a friend, that's a backup plan! 😒" },
+        { q: "Does he go 'missing' every Friday night from 8pm to 2am? 🕵️‍♂️", points: 1, reply: "Oh, so he's Batman now? Without the money? Chile... ✋" },
+        { q: "Does he have more than 5 kids with 5 different women? 👶🏾", points: 1, reply: "That's not a family tree, that's a forest! Run! 🏃🏾‍♀️💨" },
+        { q: "Is his phone ALWAYS face down like it's hiding a secret? 📱", points: 1, reply: "If he's hiding the screen, he's hiding a scheme! 🤡" },
+        { q: "Does he ask YOU for gas money to come see you? ⛽", points: 1, reply: "A man with no gas is a man with no pass! Next! 💅" },
+        { q: "Does he think 'taking you out' means a 2-for-1 coupon at the drive-thru? 🍟", points: 1, reply: "We want steak, not a stomach ache! The audacity! 🙄" },
+        { q: "Does he follow 2,000 IG models but only follows you back? 📸", points: 1, reply: "He's a fan, not a boyfriend. Focus! ✨" },
+        { q: "Is he 35 years old still 'figuring it out' from his mama's couch? 🛋️", points: 1, reply: "He's not 'figuring it out,' he's getting comfortable! ✌🏾" },
+        { q: "Does he get 'mad' when you look better than him? 👗", points: 1, reply: "He wants to be the star? Buy him a costume and leave! 🌟" },
+        { q: "Does he keep 'losing' his charger whenever you're around? 🔌", points: 1, reply: "He's checking your messages, sis. We know the vibes! 🕵️‍♀️" }
     ];
 
     let currentIdx = 0; let score = 0;
@@ -56,60 +58,64 @@
         const qObj = questions[currentIdx];
         document.getElementById('question').innerText = qObj.q;
         const bin = document.getElementById('options-bin');
+        const reaction = document.getElementById('reaction-overlay');
         bin.innerHTML = '';
+        reaction.style.display = 'none';
 
-        // Update Progress Bar
-        const progress = ((currentIdx) / questions.length) * 100;
+        const progress = (currentIdx / questions.length) * 100;
         document.getElementById('progress-fill').style.width = progress + "%";
 
-        ['Yes', 'No'].forEach(text => {
+        ['YES, CHILE 🚩', 'NO, HE CLEAN ✅'].forEach(text => {
             const btn = document.createElement('button');
             btn.className = 'option-btn';
             btn.innerText = text;
-            btn.onclick = () => handleAnswer(text === 'Yes' ? qObj.points : 0);
+            btn.onclick = () => handleAnswer(text.includes('YES'), qObj.reply);
             bin.appendChild(btn);
         });
     }
 
-    function handleAnswer(p) {
-        score += p;
+    function handleAnswer(isYes, replyText) {
+        if (isYes) score++;
         document.getElementById('flag-count').innerText = score;
-        const containerEl = document.getElementById('counter-container');
-        if (score >= 5) containerEl.className = 'danger';
-        else if (score >= 2) containerEl.className = 'warning';
 
-        currentIdx++;
-        if (currentIdx < questions.length) {
-            showQuestion();
-        } else {
-            showResult();
-        }
+        const reaction = document.getElementById('reaction-overlay');
+        reaction.innerText = isYes ? replyText : "We love to see it! 💅✨";
+        reaction.style.display = 'block';
+
+        // Brief pause so they can read the sassy reaction
+        setTimeout(() => {
+            currentIdx++;
+            if (currentIdx < questions.length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }, 1800);
     }
 
     function showResult() {
         document.getElementById('quiz-ui').style.display = 'none';
-        document.getElementById('progress-bar').style.display = 'none';
         const resDiv = document.getElementById('result');
         resDiv.style.display = 'block';
         
-        let msg = `He has ${score} red flags. `;
-        if (score >= 7) msg += "Girl, run for your life! 🚩🏃‍♀️";
-        else if (score >= 4) msg += "Proceed with extreme caution. ⚠️";
-        else msg += "He might just be a little weird, but he's mostly safe. ✅";
+        let msg = "";
+        if (score >= 8) msg = `He collected ${score} flags! Sis, that's not a man, that's a whole parade. Block him, delete him, and go get a spa day. You deserve better! 💅🏾🛑`;
+        else if (score >= 4) msg = `He's got ${score} flags. The tea is lukewarm. Keep your eyes open and your heart guarded, because the math ain't mathing! 🧐☕`;
+        else msg = `Only ${score} flags? Okay! He might be a keeper, or at least he's acting right for now. Keep shining! ✨👑`;
         
         document.getElementById('verdict-text').innerText = msg;
     }
 
     function shareResults() {
-        const text = `I checked my boyfriend for red flags... Result: ${document.getElementById('verdict-text').innerText}`;
+        const text = `Girl, I checked him... ${document.getElementById('verdict-text').innerText}`;
         if (navigator.share) {
-            navigator.share({ title: 'Red Flag Radar', text: text, url: window.location.href });
+            navigator.share({ title: 'The Real Tea', text: text, url: window.location.href });
         } else {
-            alert("Share this: " + text);
+            alert("Copy this tea: " + text);
         }
     }
 
     showQuestion();
 </script>
 </body>
-</html> 
+</html>
